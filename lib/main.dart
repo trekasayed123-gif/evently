@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:evently/add_event.dart';
 import 'package:evently/intro.dart';
 import 'package:evently/onboarding.dart';
 import 'package:evently/register.dart';
@@ -44,19 +45,22 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       theme: MyTheme.light,
       darkTheme: MyTheme.dark,
       themeMode: themeProvider.themeMode,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      initialRoute: Login.routName,
+      initialRoute:Home.routName,
       routes: {
         Onboarding.routName: (context) => Onboarding(),
         Intro.routName: (context) => Intro(),
         Home.routName: (context) => Home(),
         Login.routName: (context) =>Login(),
         Register.routName: (context) =>Register(),
+        AddEvent.routName: (context) =>AddEvent(),
+
       },
     );
   }
