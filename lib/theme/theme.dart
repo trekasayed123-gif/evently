@@ -5,7 +5,7 @@ class MyTheme {
   static ThemeData light = ThemeData(
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
-      primary: Color(0XFFFFFFFF),
+      primary: Color(0XFFF4F7FF),
       onPrimary: Color(0XFF0E3A99),
       secondary: Color(0XFF0E3A99),
       onSecondary: Color(0XFF202020),

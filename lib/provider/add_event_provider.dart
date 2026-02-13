@@ -1,7 +1,7 @@
-import 'package:evently/task_model.dart';
+import 'package:evently/model/task_model.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'firebase-function.dart';
+import '../firebase/firebase-function.dart';
 
 class AddEventProvider extends ChangeNotifier {
   int selectedCategoryIndex = 0;
@@ -14,8 +14,8 @@ changeDate(DateTime newDate){
     selectedCategoryIndex = index;
     notifyListeners();
   }
-  addEvents(TaskModel taskModel){
-FirebaseFunction.createTask(taskModel);
+  addEvents(TaskModel taskModel) async{
+ await  FirebaseFunction.createTask(taskModel);
 notifyListeners();
 
   }

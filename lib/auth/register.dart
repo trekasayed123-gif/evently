@@ -1,20 +1,21 @@
-import 'dart:math';
-
-import 'package:evently/firebase-function.dart';
-import 'package:evently/home.dart';
-import 'package:evently/register.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:evently/home/home.dart';
+import 'package:evently/auth/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Login extends StatelessWidget {
-  Login({super.key});
+import '../firebase/firebase-function.dart';
+
+class Register extends StatelessWidget {
+  Register({super.key});
 
   var emailAddress = TextEditingController();
   var password = TextEditingController();
+  var name = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
-  static const String routName = "Login";
+  static const String routName = "Register";
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +29,50 @@ class Login extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 40),
-
+                SizedBox(height: 40),
                 Image.asset(
                   "assets/images/Blue White Minimal Modern Simple Bold Business Mag Logo 3.png",
-                  height: 50,
                 ),
-                const SizedBox(height: 40),
                 Text(
-                  "Login to your account",
+                  "Create your account".tr(),
                   style: GoogleFonts.poppins(
                     color: Theme.of(context).colorScheme.onPrimary,
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 24),
-
+                SizedBox(height: 40),
+                // --- Name Field ---
                 TextFormField(
+                  controller: name,
+                  decoration: InputDecoration(
+                    hintText: "Enter your name",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    // تعديل ألوان الخطأ
+                    errorStyle: const TextStyle(color: Colors.red),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Colors.red),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Colors.red, width: 2),
+                    ),
+                    prefixIcon: ImageIcon(AssetImage("assets/images/user.png")),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide(color: Color(0xff7B7B7B)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Color(0xff7B7B7B)),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16),
+                // --- Email Field ---
+                TextFormField(
+                  controller: emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Email address cannot be empty";
@@ -58,20 +85,23 @@ class Login extends StatelessWidget {
                     }
                     return null;
                   },
-                  controller: emailAddress,
                   decoration: InputDecoration(
-                  
-                    errorStyle: const TextStyle(color: Colors.red),
-                    hintText: "Enter your email",
+                    hintText: "Enter your email".tr(),
                     hintStyle: TextStyle(color: Colors.grey),
-                    prefixIcon: ImageIcon(AssetImage("assets/images/sms.png")),
+
+                    errorStyle: const TextStyle(color: Colors.red),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                       borderSide: const BorderSide(color: Colors.red),
                     ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Colors.red, width: 2),
+                    ),
+                    prefixIcon: ImageIcon(AssetImage("assets/images/sms.png")),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
-                      borderSide: const BorderSide(color: Color(0xff7B7B7B)),
+                      borderSide: BorderSide(color: Color(0xff7B7B7B)),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -79,43 +109,46 @@ class Login extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
-
+                SizedBox(height: 16),
+                // --- Password Field ---
                 TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Password cannot be empty";
+                      return "Password cannot be empty".tr();
                     }
                     if (value.length < 8) {
-                      return "Password must be at least 8 characters long";
+                      return "Password must be at least 8 characters long".tr();
                     }
                     if (!value.contains(RegExp(r'[A-Z]'))) {
-                      return "Password must contain at least one capital letter";
+                      return "Password must contain at least one capital letter".tr();
                     }
                     if (!value.contains(RegExp(r'[0-9]'))) {
-                      return "Password must contain at least one number";
+                      return "Password must contain at least one number".tr();
                     }
                     return null;
                   },
                   controller: password,
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: "Enter your password",
+                    hintText: "Enter your password".tr(),
+                    hintStyle: TextStyle(color: Colors.grey),
+                    // تعديل ألوان الخطأ
                     errorStyle: const TextStyle(color: Colors.red),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                       borderSide: const BorderSide(color: Colors.red),
                     ),
-                    hintStyle: const TextStyle(color: Colors.grey),
-                    prefixIcon: const ImageIcon(
-                      AssetImage("assets/images/lock.png"),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Colors.red, width: 2),
                     ),
-                    suffixIcon: const ImageIcon(
+                    prefixIcon: ImageIcon(AssetImage("assets/images/lock.png")),
+                    suffixIcon: ImageIcon(
                       AssetImage("assets/images/eye-slash.png"),
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
-                      borderSide: const BorderSide(color: Color(0xff7B7B7B)),
+                      borderSide: BorderSide(color: Color(0xff7B7B7B)),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -123,41 +156,70 @@ class Login extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 8),
-                // Forget Password
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Forget Password?",
-                      style: GoogleFonts.inter(
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
-                      ),
+                SizedBox(height: 16),
+                // --- Confirm Password Field ---
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Password cannot be empty".tr();
+                    }
+                    if (value.length < 8) {
+                      return "Password must be at least 8 characters long".tr();
+                    }
+                    if (value != password.text) {
+                      return "Passwords do not match".tr();
+                    }
+                    return null;
+                  },
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: "Confirm your password".tr(),
+                    hintStyle: TextStyle(color: Colors.grey),
+
+                    errorStyle: const TextStyle(color: Colors.red),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Colors.red),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Colors.red, width: 2),
+                    ),
+                    prefixIcon: ImageIcon(AssetImage("assets/images/lock.png")),
+                    suffixIcon: ImageIcon(
+                      AssetImage("assets/images/eye-slash.png"),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide(color: Color(0xff7B7B7B)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Color(0xff7B7B7B)),
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
-
+                SizedBox(height: 52),
                 ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      FirebaseFunction.signUser(
+                      FirebaseFunction.createUser(
                         emailAddress.text,
                         password.text,
-                        () {
+                        name.text,
+                            () {
                           Navigator.pushReplacementNamed(
                             context,
-                            Home.routName,
+                            Login.routName,
                           );
                         },
-                        (message) {
+                            (message) {
                           ScaffoldMessenger.of(
                             context,
                           ).showSnackBar(SnackBar(content: Text(message)));
-                        },
+                        }
+                        ,
+
                       );
                     }
                   },
@@ -169,7 +231,7 @@ class Login extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    "Login",
+                    "Sign up".tr(),
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onError,
                       fontSize: 20,
@@ -177,21 +239,17 @@ class Login extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
-
+                SizedBox(height: 24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don’t have an account ? "),
+                    Text("Already have an account?".tr()),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          Register.routName,
-                        );
+                        Navigator.pushReplacementNamed(context, Login.routName);
                       },
                       child: Text(
-                        "Signup",
+                        "Login".tr(),
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.bold,
@@ -201,8 +259,7 @@ class Login extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 24),
-
+                SizedBox(height: 32),
                 Row(
                   children: [
                     Expanded(
@@ -213,7 +270,7 @@ class Login extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Or",
+                      "Or".tr(),
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.secondary,
                       ),
@@ -245,7 +302,7 @@ class Login extends StatelessWidget {
                       Image.asset("assets/images/google.png", height: 24),
                       const SizedBox(width: 10),
                       Text(
-                        "Login with Google",
+                        "Login with Google".tr(),
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.secondary,
                           fontSize: 18,

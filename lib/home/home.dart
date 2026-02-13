@@ -1,8 +1,9 @@
-import 'package:evently/add_event.dart';
-import 'package:evently/favorite_page.dart';
-import 'package:evently/home_page.dart';
-import 'package:evently/home_provider.dart';
-import 'package:evently/profile_page.dart';
+import 'package:evently/addEvent/add_event.dart';
+import 'package:evently/provider/auth_provider.dart';
+import 'package:evently/taps/favorite_page.dart';
+import 'package:evently/taps/home_page.dart';
+import 'package:evently/provider/home_provider.dart';
+import 'package:evently/taps/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var   provider =Provider.of<AuthProvider>(context);
     return ChangeNotifierProvider(
       create: (_) => HomeProvider(),
       child: Consumer<HomeProvider>(
@@ -22,38 +24,18 @@ class Home extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.primary,
 
             appBar: AppBar(
-              title: const ListTile(
-                title: Text("Welcome Back ✨"),
+              title: ListTile(
+                title: const Text("Welcome Back ✨"),
                 subtitle: Text(
-                  "John Safwan",
+                  provider.userModel?.name??"",
+
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 20,
+                    color :Theme.of(context).colorScheme.onSecondary
                   ),
                 ),
               ),
-              actions: [
-                const ImageIcon(AssetImage("assets/images/sun.png")),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Container(
-                    width: 34,
-                    height: 34,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "EG",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onError,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
             ),
 
             floatingActionButton: FloatingActionButton(

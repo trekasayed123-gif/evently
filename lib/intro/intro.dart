@@ -1,15 +1,16 @@
-import 'package:evently/home.dart';
-import 'package:evently/login.dart';
-import 'package:evently/onboarding.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:evently/home/home.dart';
+import 'package:evently/auth/login.dart';
+import 'package:evently/onboarding/onboarding.dart';
+
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:flutter/cupertino.dart';
+
 
 class Intro extends StatefulWidget {
   static const String routName = "Intro";
 
-  Intro({super.key});
+  const Intro({super.key});
 
   @override
   State<Intro> createState() => _IntroState();
@@ -23,26 +24,26 @@ class _IntroState extends State<Intro> {
   List<PageViewModel> listPagesViewModel = [
     PageViewModel(
       titleWidget: Text(
-        "Find Events That Inspire You",
+        "Find Events That Inspire You".tr(),
         style: Style.titleStyle,
       ),
       body:
-          "Dive into a world of events crafted to fit your unique interests. Whether you're into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.",
+      "Dive into a world of events crafted to fit your unique interests. Whether you're into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.".tr(),
       image: Image.asset("assets/images/hot-trending.png"),
     ),
     PageViewModel(
-      titleWidget: Text("Effortless Event Planning", style: Style.titleStyle),
+      titleWidget: Text("Find Events That Inspire You".tr(), style: Style.titleStyle),
       body:
-          "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests..",
+       "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.".tr(),
       image: Image.asset("assets/images/being-creative.png"),
     ),
     PageViewModel(
       titleWidget: Text(
-        "Connect with Friends & Share Moments",
+      "Effortless Event Planning".tr(),
         style: Style.titleStyle,
       ),
       body:
-          "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories",
+"Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.".tr(),
       image: Image.asset("assets/images/being-creative (1).png"),
     ),
   ];
@@ -92,7 +93,7 @@ class _IntroState extends State<Intro> {
                 ),
               ),
               child: Text(
-                currentIndex == listPagesViewModel.length - 1 ? "Done" : "Next",
+                currentIndex == listPagesViewModel.length - 1 ? "Get Started".tr() : "Next".tr(),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,

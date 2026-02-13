@@ -1,12 +1,14 @@
 import 'dart:io';
 
-import 'package:evently/task_model.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:evently/model/task_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'add_event_provider.dart';
+import '../provider/add_event_provider.dart';
 
 class AddEvent extends StatelessWidget {
   static const String routName = "addEvent";
@@ -31,10 +33,10 @@ class AddEvent extends StatelessWidget {
       child: Consumer<AddEventProvider>(
         builder: (context, provider, child) {
           return Scaffold(
-            backgroundColor: Color(0xffF4F7FF),
+            backgroundColor: Theme.of(context).colorScheme.primary,
             appBar: AppBar(
               title: Text(
-                "Add event",
+                "Add event".tr(),
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSecondary,
                   fontSize: 18,
@@ -92,7 +94,7 @@ class AddEvent extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "Title",
+                      "Title".tr(),
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
@@ -105,7 +107,7 @@ class AddEvent extends StatelessWidget {
                     child: TextField(
                       controller: titleController,
                       decoration: InputDecoration(
-                        hint: Text("Event Title"),
+                        hint: Text("Event Title".tr()),
                         labelStyle: TextStyle(
                           color: Theme.of(context).colorScheme.onSecondary,
                         ),
@@ -222,11 +224,16 @@ class AddEvent extends StatelessWidget {
                         onPressed: () {
                           provider.addEvents(
                             TaskModel(
+                              userId: FirebaseAuth.instance.currentUser!.uid,
                               title: titleController.text,
                               description: descriptionController.text,
                               date: provider.date.millisecondsSinceEpoch,
+                              category: categories[provider.selectedCategoryIndex],
+
                             ),
+
                           );
+                          Navigator.of(context).pop();
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(
@@ -238,7 +245,7 @@ class AddEvent extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          "Add event",
+                          "Add event".tr(),
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.onError,
                             fontSize: 20,
