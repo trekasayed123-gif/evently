@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/auth_provider.dart';
+import 'forget_password_screen.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
@@ -132,8 +133,16 @@ class Login extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                    onPressed: () {},
-                    child: Text(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        ForgetPasswordScreen.routName,
+                          arguments: emailAddress.text,
+
+                      );
+                  },
+
+                      child: Text(
                       "Forget Password?".tr(),
                       style: GoogleFonts.inter(
                         color: Theme.of(context).colorScheme.secondary,
@@ -200,7 +209,7 @@ class Login extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don’t have an account ? "),
+                    Text("Don’t have an account ? ".tr()),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushReplacementNamed(
@@ -247,7 +256,21 @@ class Login extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    FirebaseFunction.signInWithGoogle(
+                      onSuccess: (user) {
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          Home.routName,
+                              (route) => false,
+                        );
+                      },
+                      onError: (message) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(SnackBar(content: Text(message)));
+                      },
+                    );
+                  },
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     side: BorderSide(

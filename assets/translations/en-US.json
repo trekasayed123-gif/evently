@@ -8,14 +8,13 @@
   "Start": "Let’s start",
   "Find Events That Inspire You": "Find Events That Inspire You",
   "Personalize Your Experience": "Personalize Your Experience",
-
   "Effortless Event Planning": "Effortless Event Planning",
   "Connect with Friends & Share Moments": "Connect with Friends & Share Moments",
   "Dive into a world of events crafted to fit your unique interests. Whether you're into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.": "Dive into a world of events crafted to fit your unique interests. Whether you're into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.",
-  "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests..":  "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests..",
+  "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests..": "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests..",
   "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories": "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories",
   "Next": "Next",
- "Get Started": "Get Started",
+  "Get Started": "Get Started",
   "Skip": "Skip",
   "Login to your account": "Login to your account",
   "Enter your email": "Enter your email",
@@ -27,14 +26,14 @@
   "Password must contain at least one capital letter": "Password must contain at least one capital letter",
   "Forget Password?": "Forget Password?",
   "Login": "Login",
-  "Don’t have an account ? ": "Don’t have an account ? ",
-  "Signup":  "Signup",
+  "Enter your name": "Enter your name",
+  "Signup": "Signup",
   "Or": "Or",
   "Login with Google": "Login with Google",
   "Create your account": "Create your account",
   "Confirm your password": "Confirm your password",
   "Passwords do not match": "Passwords do not match",
-  "Sign up":  "Sign up",
+  "Sign up": "Sign up",
   "Already have an account?": "Already have an account?",
   "Welcome Back ✨": "Welcome Back ✨",
   "Add event": "Add event",
@@ -42,14 +41,10 @@
   "Event Title": "Event Title",
   "Description": "Description",
   "Event Description....": "Event Description....",
-  "Event Date": "Event Date"
-
-
-
-
-
-
-
-
-
+  "Event Date": "Event Date",
+  "Forget Password": "Forget Password",
+  "Reset password": "Reset password",
+  "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.": "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.",
+  "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.": "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.",
+  "Don’t have an account ? ": "Don’t have an account ? "
 }

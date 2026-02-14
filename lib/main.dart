@@ -12,6 +12,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'auth/forget_password_screen.dart';
 import 'firebase/firebase_options.dart';
 import 'home/home.dart';
 import 'auth/login.dart';
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
       // initialRoute: authProvider.firebaseUser != null
       //     ? Home.routName
       //     :Onboarding.routName,
-      initialRoute:Home.routName,
+      initialRoute: Onboarding.routName,
       routes: {
         Onboarding.routName: (context) => Onboarding(),
         Intro.routName: (context) => Intro(),
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
         Login.routName: (context) => Login(),
         Register.routName: (context) => Register(),
         AddEvent.routName: (context) => AddEvent(),
+        ForgetPasswordScreen.routName: (context) => ForgetPasswordScreen(),
       },
     );
   }

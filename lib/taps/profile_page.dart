@@ -19,26 +19,20 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+
         toolbarHeight: 120,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
         ),
         title: Row(
+          mainAxisAlignment:  MainAxisAlignment.center,
           children: [
             const CircleAvatar(
-              radius: 40,
-              backgroundColor: Colors.white,
-              child: Text("ROUTE", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+              radius: 50,
+              backgroundColor: Color(0XFF0E3A99),
+              child: Text("Evently", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
             ),
             const SizedBox(width: 15),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text( provider.userModel?.name??"", style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
-                Text( provider.userModel?.email??"", style: GoogleFonts.poppins(color: Colors.white, fontSize: 14)),
-              ],
-            )
           ],
         ),
       ),
@@ -46,6 +40,9 @@ class ProfilePage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
+            Text( provider.userModel?.name??"", style: GoogleFonts.poppins(color:Theme.of(context).colorScheme.onSecondary, fontWeight: FontWeight.bold, fontSize: 18)),
+            Text( provider.userModel?.email??"", style: GoogleFonts.poppins(color: Theme.of(context).colorScheme.onSecondary, fontSize: 14)),
+            const SizedBox(width: 15),
             _buildProfileItem(
               context: context,
               title: "Dark mode",
@@ -72,25 +69,29 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
 
-SizedBox(height: 16,),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-               backgroundColor: Theme.of(context).colorScheme.primary,
-                minimumSize: const Size(double.infinity, 50),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-              ),
-              onPressed: () {
-                FirebaseFunction.signOut();
-                Navigator.pushNamedAndRemoveUntil(context, Login.routName, (route) => false);
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Logout", style: TextStyle(color:Theme.of(context).colorScheme.onSecondary)),
-                  const Icon(Icons.logout, color: Colors.red),
-                  const SizedBox(width: 10),
-
-                ],
+SizedBox(height: 30,),
+            Container(
+              width: double.infinity,
+              child: ElevatedButton(
+                  onPressed: () {
+                    FirebaseFunction.signOut();
+                    Navigator.pushNamedAndRemoveUntil(context, Login.routName, (route) => false);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                child: Text(
+                  "Logout",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onError,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ),
           ],

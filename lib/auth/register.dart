@@ -42,13 +42,13 @@ class Register extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 40),
-                // --- Name Field ---
+
                 TextFormField(
                   controller: name,
                   decoration: InputDecoration(
-                    hintText: "Enter your name",
+                    hintText: "Enter your name".tr(),
                     hintStyle: TextStyle(color: Colors.grey),
-                    // تعديل ألوان الخطأ
+
                     errorStyle: const TextStyle(color: Colors.red),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -286,7 +286,21 @@ class Register extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 OutlinedButton(
-                  onPressed: () {},
+                    onPressed: () {
+                      FirebaseFunction.signInWithGoogle(
+                        onSuccess: (user) {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            Home.routName,
+                                (route) => false,
+                          );
+                        },
+                        onError: (message) {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(SnackBar(content: Text(message)));
+                        },
+                      );
+                    },
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     side: BorderSide(
